@@ -13,7 +13,7 @@ export const HeaderContainer = styled.header`
 
   span {
     background-color: ${props => props.theme["purple-300"]};
-    color: ${props => props.theme["purple-700"]};
+    color: ${props => props.theme["purple-500"]};
     font-size: 0.875rem;
     padding: 0.5rem;
     border-radius: 6px;
@@ -22,6 +22,10 @@ export const HeaderContainer = styled.header`
     justify-content: center;
     align-items: center;
     gap: 4px;
+  }
+
+  p {
+    color: ${props => props.theme["purple-700"]};
   }
 
   div a {

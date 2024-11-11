@@ -1,5 +1,5 @@
-import { ProductContainer } from "./styles";
-import { ShoppingCart } from "@phosphor-icons/react";
+import { ButtonAction, Currency, ProductContainer, QuantityInput } from "./styles";
+import { Minus, Plus, ShoppingCartSimple } from "@phosphor-icons/react";
 import expressoCoffee from "../../../../assets/coffees/Expresso.png"
 import americanoCoffee from "../../../../assets/coffees/Americano.png"
 import expressoCremosoCoffee from "../../../../assets/coffees/Expresso_Cremoso.png"
@@ -52,11 +52,21 @@ export function Product({ tags, title, description, price, thumb }: ProductProps
         <p>{description}</p>
       </div>
       <footer>
-        <span>{price}</span>
-        <input type="number" />
-        <button>
-          <ShoppingCart size={22}/>
-        </button>
+        <strong>
+          <Currency>{price}</Currency>
+        </strong>
+        <QuantityInput>
+          <button>
+            <Minus />
+          </button>
+          <span>1</span>
+          <button>
+            <Plus />
+          </button>
+        </QuantityInput>
+        <ButtonAction>
+          <ShoppingCartSimple size={22} weight="fill"/>
+        </ButtonAction>
       </footer>
     </ProductContainer>
   )

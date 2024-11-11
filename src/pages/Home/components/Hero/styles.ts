@@ -3,7 +3,7 @@ import background from "../../../../assets/background.png"
 
 export const HeroContainer = styled.header`
   display: flex;
-  padding: 4rem 0;
+  padding: 5rem 0;
   /* background-image: url(${background}); */
 
   header {
@@ -16,7 +16,8 @@ export const HeroContainer = styled.header`
     font-size: 3rem;
     line-height: 130%;
     font-family: 'Baloo 2';
-    font-weight: bold;
+    color: ${props => props.theme["zinc-700"]};
+    font-weight: 900;
   }
 
   p {
@@ -26,15 +27,12 @@ export const HeroContainer = styled.header`
 
   div div {
     display: flex;
-    gap: 8px;
   }
 `
 
 export const ServicesContainer = styled.div`
+  padding-top: 4rem;
   display: flex;
-
-  div {
-    display: flex;
-    flex-direction: column;
-  }
+  flex-wrap: wrap;
+  gap: 2.5rem;
 `

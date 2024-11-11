@@ -1,6 +1,6 @@
-import { MapPin } from "@phosphor-icons/react";
 import { SuccessContainer } from "./styles";
 import imageDelivery from "../../assets/image-delivery.svg"
+import { IconTag } from "./components/IconTag";
 
 export function Success() {
   return (
@@ -9,32 +9,9 @@ export function Success() {
         <h2>Uhu! Pedido confirmado</h2>
         <p>Agora é só aguardar que logo o café chegará até você</p>
         <section>
-          <div>
-            <span>
-              <MapPin size={20} />
-            </span>
-            <div>
-              <p>Entrega em Rua João Daniel Martinelli, 102Farrapos - Porto Alegre, RS</p>
-            </div>
-          </div>
-          <div>
-            <span>
-              <MapPin size={20} />
-            </span>
-            <div>
-              <p>Previsão de entrega</p>
-              <strong>20 min - 30 min</strong>
-            </div>
-          </div>
-          <div>
-            <span>
-              <MapPin size={20} />
-            </span>
-            <div>
-              <p>Pagamento na entrega</p>
-              <strong>Cartão de Crédito</strong>
-            </div>
-          </div>
+          <IconTag title="Entrega em Rua João Daniel Martinelli, 102" subtitle="Farrapos - Porto Alegre, RS" />
+          <IconTag title="Previsão de entrega" subtitle="20 min - 30 min" />
+          <IconTag title="Pagamento na entrega" subtitle="Cartão de Crédito" />
         </section>
       </div>
       <aside>

@@ -23,6 +23,10 @@ export const SuccessContainer = styled.main`
     padding: 2.5rem;
     margin-top: 2.5rem;
     color: ${props => props.theme["zinc-500"]};
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
   aside {

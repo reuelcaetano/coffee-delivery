@@ -11,14 +11,10 @@ export function Hero() {
           <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
         </header>
         <ServicesContainer>
-          <div>
-            <Tag title="Compra simples e segura" />
-            <Tag title="Compra simples e segura" />
-          </div>
-          <div>
-            <Tag title="Compra simples e segura" />
-            <Tag title="Compra simples e segura" />
-          </div>
+          <Tag title="Compra simples e segura" background="yellow-700" />
+          <Tag title="Embalagem mantém o café intacto" background="zinc-500" />
+          <Tag title="Entrega rápida e rastreada" background="yellow-500" />
+          <Tag title="O café chega fresquinho até você" background="purple-500" />
         </ServicesContainer>
       </div>
       <img src={imageHero} alt="" />
