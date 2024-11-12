@@ -34,8 +34,29 @@ export const HeaderContainer = styled.header`
     padding: 8px;
     border-radius: 6px;
 
+    position: relative;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    span {
+      background: ${props => props.theme["yellow-700"]};
+      color: ${props => props.theme["gray-0"]};
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 0.5rem;
+      
+      position: absolute;
+      top: -10px;
+      right: -10px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 `

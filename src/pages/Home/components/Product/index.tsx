@@ -14,8 +14,10 @@ import cubanoCoffee from "../../../../assets/coffees/Cubano.png"
 import havaianoCoffee from "../../../../assets/coffees/Havaiano.png"
 import arabeCoffee from "../../../../assets/coffees/Arabe.png"
 import irlandesCoffee from "../../../../assets/coffees/Irlandes.png"
+import { useContext, useState } from "react";
+import { CartContext } from "../../../../contexts/cartContext";
 
-const flavors = {
+export const flavors = {
   'expresso': expressoCoffee,
   'americano': americanoCoffee,
   'expresso_cremoso': expressoCremosoCoffee,
@@ -33,38 +35,54 @@ const flavors = {
 }
 
 interface ProductProps {
+  id: number
   tags: string[]
   title: string
   description: string
-  price: string
+  price: number
   thumb: keyof typeof flavors
 }
 
-export function Product({ tags, title, description, price, thumb }: ProductProps) {
+export function Product({ id, tags, title, description, price, thumb }: ProductProps) {
+  const { insertItem } = useContext(CartContext)
+  const [ quantity, setQuantity ] = useState(1)
+
+  function handlePlus() {
+    setQuantity((state) => state + 1)
+  }
+  
+  function handleMinus() {
+    if (quantity > 1) {
+      setQuantity((state) => state -1 )
+    }
+  }
+
   return (
     <ProductContainer>
       <img src={flavors[thumb]} alt="" />
       <div>
         <div>
-          {tags.map((tag) => { return <span>{tag}</span>})}
+          {tags.map((tag) => {
+            return <span key={tag}>{tag}</span>
+          })}
         </div>
         <strong>{title}</strong>
         <p>{description}</p>
       </div>
       <footer>
         <strong>
-          <Currency>{price}</Currency>
+          <Currency>{price.toFixed(2).replace('.',',')}</Currency>
         </strong>
         <QuantityInput>
-          <button>
+          <button onClick={() => handleMinus()}>
             <Minus />
           </button>
-          <span>1</span>
-          <button>
+          <span>{quantity}</span>
+          <button onClick={() => handlePlus()}>
             <Plus />
           </button>
         </QuantityInput>
-        <ButtonAction>
+        <ButtonAction onClick={() => insertItem(id, quantity)}>
           <ShoppingCartSimple size={22} weight="fill"/>
         </ButtonAction>
       </footer>

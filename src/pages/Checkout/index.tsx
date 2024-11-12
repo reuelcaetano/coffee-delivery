@@ -1,11 +1,26 @@
 import { CreditCard, CurrencyDollar, MapPin, Money } from "@phosphor-icons/react";
 import { AddressContainer, AddressForm, ButtonCustom, CheckoutContainer, Description, PaymentContainer, PaymentType } from "./styles";
 import { Item } from "./components/Item";
-import expressoCoffee from "../../assets/coffees/Americano.png"
-import latte from "../../assets/coffees/Latte.png"
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../contexts/cartContext";
 
 export function Checkout() {
+  const { cart, stock, clearCart } = useContext(CartContext)
+  const order = cart.reduce(
+    (acc, item) => {
+      console.log(item.price)
+      console.log(item.amount)
+      acc.total += item.amount * item.price
+
+      return acc
+    },
+    {
+      total: 0,
+      tax: 3.5
+    }  
+  )
+
   return (
     <CheckoutContainer>
       <main>
@@ -70,23 +85,34 @@ export function Checkout() {
       <aside>
         <h2>Cafés selecionados</h2>
         <div>
-          <Item title="Exresso Tradicional" thumb={expressoCoffee} />
-          <Item title="Latte" thumb={latte} />
+          { cart.map(item => {
+            const product = stock.find((product) => product.id === item.id)
+            if (!product) { return }
+            return (
+              <Item
+                key={item.id}
+                id={product.id}
+                title={product.title}
+                thumb={product.thumb}
+                price={product.price}
+              />
+            )
+          })}
           <footer>
             <Description>
               <span>Total de itens</span>
-              <span>R$ 29,70</span>
+              <span>R$ {order.total.toFixed(2).replace('.',',')}</span>
             </Description>
             <Description>
               <span>Entrega</span>
-              <span>R$ 3,50</span>
+              <span>R$ {order.tax.toFixed(2).replace('.',',')}</span>
             </Description>
             <Description>
               <strong>Total</strong>
-              <strong>R$ 33,20</strong>
+              <strong>R$ {(order.total + order.tax).toFixed(2).replace('.',',')}</strong>
             </Description>
             <ButtonCustom>
-              <NavLink to="/success">CONFIRMAR PEDIDO</NavLink>
+              <NavLink to="/success" onClick={() => clearCart()}>CONFIRMAR PEDIDO</NavLink>
             </ButtonCustom>
           </footer>
         </div>
